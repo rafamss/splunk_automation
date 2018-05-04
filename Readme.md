@@ -1,3 +1,3 @@
 # Git Course
 
-Este é um repositório inicial e de testes.
+Este é um repositório inicial e de testes de Splunk..
