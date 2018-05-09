@@ -5,10 +5,13 @@ cd ~/
 mkdir -p downloads && cd $_
 echo -e "################## validating if wget is installed ##################\n"
 
+# Validating if the wget command are installed
 if [ ! -x /usr/bin/wget ] ; then
+	echo -e "################## wget not installed, installing now ... ##################\n"
+	# At this moment just Linux using yum package manager are ready to use
 	sudo yum install wget -y
 else
-	echo -e "################## wget is installed ##################\n"
+	echo -e "################## wget was already installed ##################\n"
 fi
 
 # Remote download of Splunk Enterprise from the specified repository
@@ -29,6 +32,6 @@ else
 		echo -e "splunkenterprise md5 didn't match\n"
 fi
 
-echo -e "splunk enterprise installed\n"
+echo -e "splunk enterprise downloaded and ready to install\n"
 
 exit
