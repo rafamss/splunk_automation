@@ -10,7 +10,6 @@ This space are divided in:
 	1. [ ] Installation of Splunk Enterprise (Linux & Windows);
 	1. [ ] Post-Installation of Splunk Enterprise (Linux & Windows);
 	1. [ ] Start Splunk Enterprise (Linux & Windows).
-
 2.	Splunk Universal Forwarder:
 	2. [ ] Automated Downloads and Validation Files (Linux & Windows);
 	2. [ ] CheckLists and Preparation to Install (Linux & Windows);
