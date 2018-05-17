@@ -9,8 +9,10 @@ When I'm deploying a new Universal Forwarder, I always put together an app that 
 This space is divided in: 
 
 1.	Deployment Universal Forwarder:
-	- [ ] Create an app called deployment_client_target;
+	- [x] Create an app called deployment_client_target;
 	- [ ] Code the files;
 	- [ ] Parametrize the files (Linux & Windows);
 	- [ ] Prepare to deploying the app (Linux & Windows);
 	- [ ] Make your own test (Linux & Windows);
+
+This tips was obtained in the official documentation: http://docs.splunk.com/Documentation/Splunk/7.1.0/Updating/Configuredeploymentclients
