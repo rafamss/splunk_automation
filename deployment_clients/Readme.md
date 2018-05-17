@@ -15,4 +15,4 @@ This space is divided in:
 	- [ ] Prepare to deploying the app (Linux & Windows);
 	- [ ] Make your own test (Linux & Windows);
 
-This tips was obtained in the official documentation: http://docs.splunk.com/Documentation/Splunk/7.1.0/Updating/Configuredeploymentclients
+This tips was obtained in the official documentation: [Configure deployment clients](http://docs.splunk.com/Documentation/Splunk/7.1.0/Updating/Configuredeploymentclients)
