@@ -25,22 +25,22 @@ fi
 
 # Remote download of Splunk Enterprise from the specified repository
 # This URL download can be set at URL_download
-wget -O splunkenterprise $URL_download
+wget -O splunkenterprise.tgz $URL_download
 
 # Remote download from the specified repository of md5 validation file
 # This URL download can be set at URL_md5validation
-wget -O splunkenterprisemd5 $URL_md5validation
+wget -O splunkenterprise.tgz.md5 $URL_md5validation
 
 #validate downloaded files of Splunk Enterprise
 
-md5sum splunkenterprise splunkenterprisemd5 > splunkvalidatemd5
+md5sum splunkenterprise.tgz splunkenterprise.tgz.md5 > splunkhashvalidate.md5
 
-if md5sum --status -c splunkvalidatemd5 ; then
+if md5sum --status -c splunkhashvalidate.md5 ; then
 	# The MD5 sum matched
-	echo -e "splunkenterprise md5 matched\n"
+	echo -e "splunkenterprise.tgz md5 matched\n"
 else
 	# The MD5 sum didn't match
-	echo -e "splunkenterprise md5 didn't match\n"
+	echo -e "splunkenterprise.tgz md5 didn't match\n"
 fi
 
 echo -e "splunk enterprise downloaded and ready to install :)\n"
