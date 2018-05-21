@@ -14,7 +14,7 @@ sudo tar -zxvf splunkenterprise.tgz -C /opt
 sudo chown -R $user:$group /opt/splunk
 
 # setting the Splunk Home
-export SPLUNK_HOME='/opt/splunk'
+export SPLUNK_HOME=/opt/splunk
 
 # puting the user credentials at the user-seed.conf
 cd $SPLUNK_HOME/etc/system/local
