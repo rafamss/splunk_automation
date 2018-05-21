@@ -1,17 +1,17 @@
 #!/bin/bash
 
+# define the user and group of splunk directory owner
+user='your user'
+group='your pass'
+
 # opening the directory of download
 cd ~/downloads
 
 # untar the validated splunk enterprise file
 sudo tar -zxvf splunkenterprise.tgz -C /opt
 
-# define the user and group of splunk directory owner
-user=[your user]
-pass=[your pass]
-
 # change the owner of installation directory
-sudo chown -R $user:$pass /opt/splunk
+sudo chown -R $user:$group /opt/splunk
 
 # puting the user credentials at the user-seed.conf
 cd /opt/splunk/etc/system/local
