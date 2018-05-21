@@ -1,10 +1,18 @@
 #!/bin/bash
 
-# change the owner of installation directory
-sudo chown -R ec2-user:ec2-user /opt/splunk 
+# define the user and group of splunk directory owner
+user=[your user]
+pass=[your pass]
 
-# open the default installation directory
-cd /opt/splunk
+# change the owner of installation directory
+sudo chown -R $user:$pass /opt/splunk
+
+# puting the user credentials at the user-seed.conf
+cd /opt/splunk/etc/system/local
+touch user-seed.conf
+echo [user_info] > user-seed.conf
+echo USERNAME=admin >> user-seed.conf
+echo PASSWORD=changeme  >> user-seed.conf
 
 # starting the splunk without answer any questions
 # the admin user will be created below at this script
@@ -15,14 +23,3 @@ cd /opt/splunk
 
 # setting the Splunk Home
 export SPLUNK_HOME='/opt/splunk'
-
-# creating the admin user
-cd $SPLUNK_HOME
-./bin/splunk stop
-
-# puting the user credentials at the user-seed.conf
-cd $SPLUNK_HOME/etc/system/local
-touch user-seed.conf
-echo > [user_info]
-echo >> USERNAME=admin
-echo >> PASSWORD=changeme
