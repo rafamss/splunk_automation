@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# opening the directory of download
+cd ~/downloads
+
+# untar the validated splunk enterprise file
+sudo tar -zxvf splunkenterprise.tgz -C /opt
+
 # define the user and group of splunk directory owner
 user=[your user]
 pass=[your pass]
