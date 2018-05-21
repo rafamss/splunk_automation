@@ -31,7 +31,7 @@ wget -O splunkenterprise.tgz $URL_download
 # This URL download can be set at URL_md5validation
 wget -O splunkenterprise.tgz.md5 $URL_md5validation
 
-#validate downloaded files of Splunk Enterprise
+# Validating the downloaded files of Splunk Enterprise #
 
 md5sum splunkenterprise.tgz splunkenterprise.tgz.md5 > splunkhashvalidate.md5
 
