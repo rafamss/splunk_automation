@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #########################
-# author: Rafael Santos #
+# @author: Rafael Santos #
 #########################
 # Until now this script has the ability to download the Splunk Enterprise to Linux, your md5 validation file and validate both file.#
 # Variables definition ##
