@@ -22,7 +22,8 @@ echo PASSWORD=changeme  >> user-seed.conf
 
 # starting the splunk without answer any questions
 # the admin user will be created below at this script
-./bin/splunk start --answer-yes --no-prompt --accept-license
+cd $SPLUNK_HOME/bin
+./splunk start --answer-yes --no-prompt --accept-license
 
 # put the splunk in boot start
 ./splunk enable boot-start
