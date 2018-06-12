@@ -5,7 +5,7 @@ user='your user'
 group='your pass'
 
 # opening the directory of download
-cd ~/downloads
+cd $dctdown
 
 # untar the validated splunk enterprise file
 sudo tar -zxvf splunkenterprise.tgz -C /opt
@@ -15,6 +15,7 @@ sudo chown -R $user:$group /opt/splunk
 
 # setting the Splunk Home
 export SPLUNK_HOME=/opt/splunk
+source ~/.bash_profile
 
 # puting the user credentials at the user-seed.conf
 cd $SPLUNK_HOME/etc/system/local
