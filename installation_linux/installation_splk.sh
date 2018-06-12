@@ -18,12 +18,18 @@ sudo chown -R $user:$group /opt/splunk
 export SPLUNK_HOME=/opt/splunk
 source ~/.bash_profile
 
-# puting the user credentials at the user-seed.conf
+# puting the new user credentials at the user-seed.conf
 cd $SPLUNK_HOME/etc/system/local
 touch user-seed.conf
 echo [user_info] > user-seed.conf
 echo USERNAME=admin >> user-seed.conf
 echo PASSWORD=changeme  >> user-seed.conf
+
+# enable Splunk Web access via HTTPS
+touch web.conf
+echo [settings] > web.conf
+echo 'httpport = 8000' >> web.conf
+echo 'enableSplunkWebSSL = true'  >> web.conf
 
 # starting the splunk without answer any questions
 # the admin user will be created below at this script
