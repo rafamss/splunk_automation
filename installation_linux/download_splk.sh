@@ -20,9 +20,9 @@ dctdown='~/'
 # Start the checklist to download Splunk Enterprise
 cd $dctdown
 mkdir -p downloads && cd $_
-echo -e "################## validating if wget is installed ##################\n"
 
 # Validating if the wget command are installed
+echo -e "################## validating if wget is installed ##################\n"
 if [ ! -x /usr/bin/wget ] ; then
 	echo -e "################## wget not installed, installing now ... ##################\n"
 	# At this moment just Linux using yum package manager are ready to use
