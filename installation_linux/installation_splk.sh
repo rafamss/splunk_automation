@@ -5,6 +5,7 @@ user='your user'
 group='your pass'
 
 # opening the directory of download
+dctdown='/home/'$USER
 cd '$dctdown/downloads'
 
 # untar the validated splunk enterprise file
