@@ -7,16 +7,15 @@ This space is divided in:
 1.	Splunk Enterprise:
 	- [x] Automated Downloads and Validation Files (Linux);
 	- [x] Checklist and Preparation to Install (Linux);
-	- [ ] Installation of Splunk Enterprise at Linux;
-	- [ ] Installation of Splunk Enterprise (Linux);
-	- [ ] Post-Installation of Splunk Enterprise (Linux);
-	- [ ] Start Splunk Enterprise (Linux & Windows).
+	- [x] Installation of Splunk Enterprise at Linux;
+	- [x] Post-Installation of Splunk Enterprise (Linux);
+	- [x] Start Splunk Enterprise (Linux) with SSL Access.
 2.	Splunk Universal Forwarder:
 	- [ ] Automated Downloads and Validation Files (Linux);
 	- [ ] Checklist and Preparation to Install (Linux);
 	- [ ] Installation of Splunk Enterprise (Linux);
 	- [ ] Post-Installation of Splunk Enterprise (Linux);
-	- [ ] Start Splunk Enterprise (Linux & Windows).
+	- [ ] Start Splunk Enterprise (Linux).
 
 I hope everyone enjoys it. :squirrel:
 
