@@ -1,16 +1,24 @@
 #!/bin/bash
 
-#########################
+##########################
 # @author: Rafael Santos #
-#########################
-# Until now this script has the ability to download the Splunk Enterprise to Linux, your md5 validation file and validate both file.#
-# Variables definition ##
-# Set of URL download ###
+# @description: This script download the Splunk Enterprise file
+# your md5 hash file and them validate both.
+# @optional: You can set the variables to your own environment
+# See the ## Variables definition ##
+##########################
+
+## Variables definition ##
+## Set of URL download ###
 URL_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.0&product=splunk&filename=splunk-7.1.0-2e75b3406c5b-Linux-x86_64.tgz&wget=true'
 URL_md5validation='https://download.splunk.com/products/splunk/releases/7.1.0/linux/splunk-7.1.0-2e75b3406c5b-Linux-x86_64.tgz.md5'
 
+## Set directory to downdload splunk and validate then ##
+## Change this if you want to ##
+dctdown='~/'
+
 # Start the checklist to download Splunk Enterprise
-cd ~/
+cd $dctdown
 mkdir -p downloads && cd $_
 echo -e "################## validating if wget is installed ##################\n"
 
