@@ -15,7 +15,6 @@ URL_md5validation='https://download.splunk.com/products/splunk/releases/7.1.1/li
 
 ## Set directory to downdload splunk and validate then ##
 ## Change this if you want to ##
-dctuser=$USER
 dctdown='/home/'$USER
 
 # Start the checklist to download Splunk Enterprise
