@@ -1,6 +1,8 @@
 ## Tips and Tricks to improve your Splunk Enterprise daily job :sunglasses:
 
-**This space are being developed** to provide tips & tricks for those who need some automated way to quickly do something on their Splunk Enterprise environment, installation, configuration as well as some best practices into their environment.
+**This space are being developed and in constantly development** to provide tips & tricks for those who need some automated way to quickly do something on their Splunk Enterprise environment, installation, configuration as well as some best practices into their environment.
+
+To make your life more easy, pay attention on the marked items, this items was tested and are ready to use, enjoy! :sunglasses:
 
 This space is divided in:
 
