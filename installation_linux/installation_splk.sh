@@ -16,6 +16,7 @@ sudo chown -R $user:$group /opt/splunk
 
 # setting the Splunk Home
 export SPLUNK_HOME=/opt/splunk
+echo SPLUNK_HOME=/opt/splunk >> ~/.bash_profile
 source ~/.bash_profile
 
 # puting the new user credentials at the user-seed.conf
