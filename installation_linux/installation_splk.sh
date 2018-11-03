@@ -39,3 +39,6 @@ sudo ./splunk start --answer-yes --no-prompt --accept-license
 
 # put the splunk in boot start
 sudo ./splunk enable boot-start
+
+# Reload the profile of user to get the environment variables
+source ~/.bash_profile
