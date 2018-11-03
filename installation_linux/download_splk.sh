@@ -17,28 +17,30 @@
 ## Set of URL download ###
 
 URL_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.0&product=splunk&filename=splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz&wget=true'
-URL_md5validation="https://download.splunk.com/products/splunk/releases/7.2.0/linux/splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz.md5'
+URL_md5validation='https://download.splunk.com/products/splunk/releases/7.2.0/linux/splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz.md5'
 
-## Set directory to downdload splunk and validate then ##
-## Change this if you want to ##
+# Set directory to downdload splunk and validate then #
+# Change this if you want to ##
 dctdown='/home/'$USER
 
 # Start the checklist to download Splunk Enterprise
 cd $dctdown
 mkdir -p downloads && cd $_
 
-# Validating if the wget command are installed
-echo -e "################## validating if wget is installed ##################\n"
+# Validating if the wget command are installed ##
+  echo -e "########### validating if wget is installed #################"
 if [ ! -x /usr/bin/wget ] ; then
-	echo -e "################## wget not installed, installing now ... ##################\n"
+	echo -e "########### wget is not installed, installing ###############"
 	# At this moment just Linux using yum package manager are ready to use
 	sudo yum install wget -y
 else
-	echo -e "################## wget was already installed ##################\n"
+	echo -e "########### wget is already, installed ######################"
 fi
 
-# Remote download of Splunk Enterprise from the specified repository
-# This URL download can be set at URL_download
+########################################################################
+## Remote download of Splunk Enterprise from the specified repository ##
+## This URL download can be set at URL_download                       ##
+########################################################################
 wget -O splunkenterprise.tgz $URL_download
 
 # Remote download from the specified repository of md5 validation file
