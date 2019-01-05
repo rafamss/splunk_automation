@@ -15,7 +15,7 @@
 ### Linux Codename based in your base Linux like Debian and REHL
 codename=$(cat /etc/os-release | grep "ID_LIKE" | sed 's/ID_LIKE=//g' | sed 's/["]//g' | awk '{print $1}')
 ### Directory used to download, copy and validate Splunk Enterprise image ###
-dctdown='/tmp/'
+dctdown='/tmp'
 ### Last version of Splunk Enterprise - You could put the necessary URL below, i.e. (Go to old_versions.txt file and get the version that you want to)
 ### Splunk Enterprise URL to download ###
 url_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.0&product=splunk&filename=splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz&wget=true'
@@ -29,7 +29,7 @@ url_md5validation='https://download.splunk.com/products/splunk/releases/7.2.0/li
 #######################################################################################################
 
 cd $dctdown
-mkdir -p splunk_tmp && cd $_
+mkdir -p splunk_tmp && cd $dctdown
 
 #######################################################################################################
 ## - Second: Test to if wget command is installed, if not install wget
@@ -37,12 +37,12 @@ mkdir -p splunk_tmp && cd $_
 
 echo -e "########### validating if wget is installed #################"
 
-if [ ! -x /usr/bin/wget } && [ $codename="rhel" ] ; then
-    echo -e "########### wget is not installed, installing ###############"
+if [ ! -x /usr/bin/wget ] && [ $codename="rhel" ] ; then
+	echo -e "########### wget is not installed, installing ###############"
 	sudo yum install wget -y
-if [ ! -x /usr/bin/wget ] && [ $codename=="ubuntu" ] ; then
-    echo -e "########### wget is not installed, installing ###############"
-    sudo apt-get install wget -y
+elif [ ! -x /usr/bin/wget ] && [ $codename="ubuntu" ] ; then
+	echo -e "########### wget is not installed, installing ###############"
+	sudo apt-get install wget -y
 else
 	echo -e "########### wget is already, installed ######################"
 fi
@@ -64,7 +64,7 @@ md5sum splunkenterprise.tgz splunkenterprise.tgz.md5 > splunkhashvalidate.md5
 
 if [ md5sum --status -c splunkhashvalidate.md5 ] ; then
 	# The MD5 sum match
-    echo -e "Splunk Enterprise Version: $splunk_version downloaded and validate, now It's ready to install :)\n"
+	echo -e "Splunk Enterprise Version: $splunk_version downloaded and validate, now It's ready to install :)\n"
 else
 	# The MD5 sum doesn't match
 	echo -e "The Splunk Enteprise File and your MD5 Validation File doesn't match ;(, please try again"
