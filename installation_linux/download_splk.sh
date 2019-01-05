@@ -1,64 +1,73 @@
 #!/bin/bash
 
-##########################
-# @author: Rafael Santos #
-# @description: This script download the Splunk Enterprise file
-# your md5 hash file and them validate both.
-# @optional: You can set the variables to your own environment
-# See the ## Variables definition ##
-##########################
+##########################################################################################################
+# @author: Rafael Santos
+# @description: This script download the Splunk Enterprise file your md5 hash file and them validate both.
+# @optional: You can set the variables to your own environment in ## Variable Section ##
+##########################################################################################################
 
-## Splunk Enterprise older versions ########################
-## Splunk Enterprise tgz version 7.1.1 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.1&product=splunk&filename=splunk-7.1.1-8f0ead9ec3db-Linux-x86_64.tgz&wget=true'
-## MD5sum Splunk Enterprise version 7.1.1 'https://download.splunk.com/products/splunk/releases/7.1.1/linux/splunk-7.1.1-8f0ead9ec3db-Linux-x86_64.tgz.md5'
-############################################################
+##########################################################################################################
+# To see more information about Splunk's Enterprise old versions, Please see the old_versions.txt file!
+##########################################################################################################
 
-## Variables definition ##
-## Set of URL download ###
+## Variable Section ######################################################################################
 
-URL_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.0&product=splunk&filename=splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz&wget=true'
-URL_md5validation='https://download.splunk.com/products/splunk/releases/7.2.0/linux/splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz.md5'
-
-# Set directory to downdload splunk and validate then #
-# Change this if you want to ##
+### Linux Codename based in your base Linux like Debian and REHL
+codename=$(cat /etc/os-release | grep "ID_LIKE" | sed 's/ID_LIKE=//g' | sed 's/["]//g' | awk '{print $1}')
+### Directory used to download, copy and validate Splunk Enterprise image ###
 dctdown='/home/'$USER
+### Last version of Splunk Enterprise - You could put the necessary URL here, i.e. (Go to old_versions.txt file and get the version that you want to)
+### Splunk Enterprise URL to download ###
+url_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.0&product=splunk&filename=splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz&wget=true'
+### Splunk Enterprise Version - It is not necessary change this variable ###
+splunk_version=$(echo $url_download | grep -Po '(?<=version\=)\d{1}\.\d{1}\.\d{1}')
+### Splunk Enterprise MD5 File Validation ###
+url_md5validation='https://download.splunk.com/products/splunk/releases/7.2.0/linux/splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz.md5'
 
-# Start the checklist to download Splunk Enterprise
+#######################################################################################################
+## - First: Open the download directory configured ($dctdown), create a download folder and get in that
+#######################################################################################################
+
 cd $dctdown
 mkdir -p downloads && cd $_
 
-# Validating if the wget command are installed ##
-  echo -e "########### validating if wget is installed #################"
-if [ ! -x /usr/bin/wget ] ; then
-	echo -e "########### wget is not installed, installing ###############"
-	# At this moment just Linux using yum package manager are ready to use
+#######################################################################################################
+## - Second: Test to if wget command is installed, if not install wget
+#######################################################################################################
+
+echo -e "########### validating if wget is installed #################"
+
+if [ ! -x /usr/bin/wget } && [ $codename="rhel" ] ; then
+    echo -e "########### wget is not installed, installing ###############"
 	sudo yum install wget -y
+if [ ! -x /usr/bin/wget ] && [ $codename=="ubuntu" ] ; then
+    echo -e "########### wget is not installed, installing ###############"
+    sudo apt-get install wget -y
 else
 	echo -e "########### wget is already, installed ######################"
 fi
 
-########################################################################
-## Remote download of Splunk Enterprise from the specified repository ##
-## This URL download can be set at URL_download                       ##
-########################################################################
-wget -O splunkenterprise.tgz $URL_download
+#######################################################################################################
+## - Third: Download Splunk Enterprise and your MD5 Validation File 
+#######################################################################################################
 
-# Remote download from the specified repository of md5 validation file
-# This URL download can be set at URL_md5validation
-wget -O splunkenterprise.tgz.md5 $URL_md5validation
+echo -e "########### Start the Splunk's Enterprise Download Version $splunk_version ###############"
+wget -O splunkenterprise.tgz $url_download
+echo -e "########### Start the Splunk's Enterprise $splunk_version MD5 Validation File Download ###############"
+wget -O splunkenterprise.tgz.md5 $url_md5validation
 
-# Validating the downloaded files of Splunk Enterprise #
+#######################################################################################################
+## - Fourth: Validate Splunk Enterprise and your MD5 Validation File 
+#######################################################################################################
 
 md5sum splunkenterprise.tgz splunkenterprise.tgz.md5 > splunkhashvalidate.md5
 
-if md5sum --status -c splunkhashvalidate.md5 ; then
-	# The MD5 sum matched
-	echo -e "splunkenterprise.tgz md5 matched\n"
+if [ md5sum --status -c splunkhashvalidate.md5 ] ; then
+	# The MD5 sum match
+    echo -e "Splunk Enterprise Version: $splunk_version downloaded and validate, now It's ready to install :)\n"
 else
-	# The MD5 sum didn't match
-	echo -e "splunkenterprise.tgz md5 didn't match\n"
+	# The MD5 sum doesn't match
+	echo -e "The Splunk Enteprise File and your MD5 Validation File doesn't match ;(, please try again"
 fi
-
-echo -e "splunk enterprise downloaded and ready to install :)\n"
 
 exit
