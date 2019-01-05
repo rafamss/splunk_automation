@@ -15,8 +15,8 @@
 ### Linux Codename based in your base Linux like Debian and REHL
 codename=$(cat /etc/os-release | grep "ID_LIKE" | sed 's/ID_LIKE=//g' | sed 's/["]//g' | awk '{print $1}')
 ### Directory used to download, copy and validate Splunk Enterprise image ###
-dctdown='/home/'$USER
-### Last version of Splunk Enterprise - You could put the necessary URL here, i.e. (Go to old_versions.txt file and get the version that you want to)
+dctdown='/tmp/'
+### Last version of Splunk Enterprise - You could put the necessary URL below, i.e. (Go to old_versions.txt file and get the version that you want to)
 ### Splunk Enterprise URL to download ###
 url_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.0&product=splunk&filename=splunk-7.2.0-8c86330ac18-Linux-x86_64.tgz&wget=true'
 ### Splunk Enterprise Version - It is not necessary change this variable ###
@@ -29,7 +29,7 @@ url_md5validation='https://download.splunk.com/products/splunk/releases/7.2.0/li
 #######################################################################################################
 
 cd $dctdown
-mkdir -p downloads && cd $_
+mkdir -p splunk_tmp && cd $_
 
 #######################################################################################################
 ## - Second: Test to if wget command is installed, if not install wget
