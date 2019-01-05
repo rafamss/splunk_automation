@@ -27,50 +27,84 @@ url_md5validation='https://download.splunk.com/products/splunk/releases/7.2.0/li
 #######################################################################################################
 ## - Thankful Notes
 #######################################################################################################
-echo -e "\033[32;1;4mThankful to use this code, if you want to contribute with this, just ask for a pull request :)\033[0m"
+
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\033[37;1;46;1m Thank you for use this code, if you want to contribute with this, just ask for a pull request :) \033[0m"
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\n"
+sleep 1
 
 #######################################################################################################
 ## - First: Open the download directory configured ($dctdown), create a download folder and get in that
 #######################################################################################################
-echo -e "\033[34;1;4m Creating directory base and opening it \033[0m"
+
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\033[37;1;46;1m Creating directory base and opening it \033[0m"
+sleep 2
 cd $dctdown
-mkdir -p splunk_tmp && cd $dctdown
+mkdir -p splunk_tmp && cd $_
+echo -e "\033[32;1;46;1m Done \033[0m"
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\n"
+sleep 1
 
 #######################################################################################################
 ## - Second: Test to if wget command is installed, if not install wget
 #######################################################################################################
-echo -e "\033[34;1;4mValidating if wget is installed\033[0m"
 
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\033[37;1;46;1m Validating if wget is installed \033[0m"
+sleep 1
 if [ ! -x /usr/bin/wget ] && [ $codename="rhel" ] ; then
-	echo -e "\033[31;1;4mWget is not installed, let's do this\033[0m"
+	echo -e "\033[37;1;46;1m Wget is not installed, let's do this \033[0m"
 	sudo yum install wget -y
+	echo -e "\033[32;1;46;1m Done \033[0m"
 elif [ ! -x /usr/bin/wget ] && [ $codename="ubuntu" ] ; then
-	echo -e "\033[32;1;4mWget is not installed, let's do this\033[0m"
+	echo -e "\033[37;1;46;1m Wget is not installed, let's do this \033[0m"
 	sudo apt-get install wget -y
+	echo -e "\033[32;1;46;1m Done \033[0m"
 else
-	echo -e "\033[32;1;4mWget is already installed, let's go the next step\033[0m"
+	echo -e "\033[37;1;46;1m Wget is already installed, let's go the next step \033[0m"
+	echo -e "\033[32;1;46;1m Done \033[0m"
 fi
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\n"
+sleep 1
 
 #######################################################################################################
 ## - Third: Download Splunk Enterprise and your MD5 Validation File 
 #######################################################################################################
-echo -e "\033[34;1;4mStart the Splunk's Enterprise Download Version $splunk_version\033[0m"
+
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\033[37;1;46;1m Start the Splunk's Enterprise Download Version $splunk_version ...\033[0m"
+echo -e "\n"
+sleep 1
 wget -O splunkenterprise.tgz $url_download
-echo -e "\033[34;1;4mStart the Splunk's Enterprise $splunk_version MD5 Validation File Download\033[0m"
+echo -e "\033[32;1;46;1m Done \033[0m"
+echo -e "\n"
+echo -e "\033[37;1;46;1m Start the Splunk's Enterprise $splunk_version MD5 Validation File Download ...\033[0m"
+sleep 1
 wget -O splunkenterprise.tgz.md5 $url_md5validation
+echo -e "\033[32;1;46;1m Done \033[0m"
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\n"
+sleep 1
 
 #######################################################################################################
 ## - Fourth: Validate Splunk Enterprise and your MD5 Validation File 
 #######################################################################################################
-echo -e "\033[34;1;4mCreating a HashFile (Splunk Enteprise and your MD5 File) to Compare them\033[0m"
+
+echo -e "\033[37;1;46m##################################################################################\033[0m"
+echo -e "\033[37;1;46;1m Creating a Hash File from files to Compare them \033[0m"
+sleep 1
 md5sum splunkenterprise.tgz splunkenterprise.tgz.md5 > splunkhashvalidate.md5
 
-if [ md5sum --status -c splunkhashvalidate.md5 ] ; then
+if md5sum --status -c splunkhashvalidate.md5 ; then
 	# The MD5 sum match
-	echo -e "\033[32;1;4mSplunk Enterprise Version: $splunk_version downloaded and validate, now It's ready to install :)\033[0m"
+	echo -e "\033[32;1;46;1m Everything is right. Splunk Enterprise $splunk_version is ready to install \033[0m"
 else
 	# The MD5 sum doesn't match
-	echo -e "\033[31;1;4mHum! Splunk Enteprise File and your MD5 Validation File doesn't match ;(, please try again\033[0m"
+	echo -e "\033[31;1;46;1m Hum! The files doesn't match. Please try again \033[0m"
 fi
-
+echo -e "\033[37;1;46m##################################################################################\033[0m"
 exit
