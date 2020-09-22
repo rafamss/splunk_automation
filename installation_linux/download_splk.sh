@@ -18,11 +18,12 @@ codename=$(cat /etc/os-release | grep "ID_LIKE" | sed 's/ID_LIKE=//g' | sed 's/[
 dctdown='/tmp'
 ### Last version of Splunk Enterprise - You could put the necessary URL below, i.e. (Go to old_versions.txt file and get the version that you want to)
 ### Splunk Enterprise URL to download ###
-url_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.2.3&product=splunk&filename=splunk-7.2.3-06d57c595b80-Linux-x86_64.tgz&wget=true'
+
+url_download='https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=8.0.6&product=splunk&filename=splunk-8.0.6-152fb4b2bb96-Linux-x86_64.tgz&wget=true'
 ### Splunk Enterprise Version - It is not necessary change this variable ###
 splunk_version=$(echo $url_download | grep -Po '(?<=version\=)\d{1}\.\d{1}\.\d{1}')
 ### Splunk Enterprise MD5 File Validation ###
-url_md5validation='https://download.splunk.com/products/splunk/releases/7.2.3/linux/splunk-7.2.3-06d57c595b80-Linux-x86_64.tgz.md5'
+url_md5validation='https://download.splunk.com/products/splunk/releases/8.0.6/linux/splunk-8.0.6-152fb4b2bb96-Linux-x86_64.tgz.md5'
 
 #######################################################################################################
 ## - Thankful Notes

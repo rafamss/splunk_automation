@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # define the user and group of splunk directory owner
-user='your user'
-group='your pass'
+user='splunk'
+group='splunk'
 
 # opening the directory of download
-dctdown='/home/'$USER
-cd $dctdown/downloads
+dctdown='/tmp'
+cd $dctdown/splunk_tmp
 
 # untar the validated splunk enterprise file
 sudo tar -zxvf splunkenterprise.tgz -C /opt
@@ -15,9 +15,11 @@ sudo tar -zxvf splunkenterprise.tgz -C /opt
 sudo chown -R $user:$group /opt/splunk
 
 # setting the Splunk Home
-export SPLUNK_HOME=/opt/splunk
-echo SPLUNK_HOME=/opt/splunk >> ~/.bash_profile
+export SPLUNK_HOME='/opt/splunk'
+echo SPLUNK_HOME='/opt/splunk' >> ~/.bash_profile
+echo SPLUNK_HOME='/opt/splunk' >> ~/.bashrc
 source ~/.bash_profile
+source ~/.bashrc
 
 # puting the new user credentials at the user-seed.conf
 cd $SPLUNK_HOME/etc/system/local
@@ -39,6 +41,3 @@ sudo ./splunk start --answer-yes --no-prompt --accept-license
 
 # put the splunk in boot start
 sudo ./splunk enable boot-start
-
-# Reload the profile of user to get the environment variables
-source ~/.bash_profile
